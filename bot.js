@@ -2,24 +2,37 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
 const db = require('quick.db');
-const moment = require('moment');
+// const moment = require('moment');
 //const fs = require("fs");
 //const settings = require('./settings.json');
 const prefix = config.prefix;
+
+let today=new Date();
+var xmas=new Date(today.getFullYear(), 11, 24);
+if (today.getMonth()==11 && today.getDate()>24){ xmas.setFullYear(xmas.getFullYear()+1);}
+var one_day=1000*60*60*24;
+let daysleft = Math.ceil((xmas.getTime()-today.getTime())/(one_day));
+let xmasmsg = "";
+if (daysleft == 1) {let xmasmsg="It's Christmas Eve!";}
+if (daysleft < 1) {let xmasmsg=":snowflake: **Merry Christmas!** :snowflake:";}
+
+let now = today.getHours();
 
 client.on('ready', () => {
   console.log(`CountdownToXMAS Bot\nConnected as ${client.user.tag}\nReady to countdown in ${client.guilds.size} servers for ${client.users.size} users...\n`);
 
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
-
+// console.log(now)
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
-    if(moment().format("hh") == '00'){
+    // if(moment().format("hh") == '00'){
+
+    if(now == 0 || now == 00){
 
 
-      console.log(`There are ${x} left to Christmas!`)
+      console.log(`There are ${daysleft} left to Christmas!`)
   } else {
     return;
   }
@@ -64,18 +77,6 @@ if (command === 'help') {
   message.channel.send({embed});
 } else
 if (command === 'countdown') {
-
-today=new Date();
-var xmas=new Date(today.getFullYear(), 11, 24);
-if (today.getMonth()==11 && today.getDate()>24)
-{
-xmas.setFullYear(xmas.getFullYear()+1);
-}
-var one_day=1000*60*60*24;
-let daysleft = Math.ceil((xmas.getTime()-today.getTime())/(one_day));
-let xmasmsg = "";
-if (daysleft == 1) {let xmasmsg="It's Christmas Eve!";}
-if (daysleft < 1) {let xmasmsg=":snowflake: **Merry Christmas!** :snowflake:";}
 
   const embed = new Discord.RichEmbed()
   .setTitle(`${daysleft} days to Christmas`)
