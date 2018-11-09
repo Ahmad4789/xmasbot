@@ -16,8 +16,15 @@ client.on('ready', () => {
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
+    if(moment().format("hh") == '00'){
+
+
+      console.log(`There are ${x} left to Christmas!`)
+  } else {
+    return;
+  }
       // db.all()
-    }, 300000)
+    }, 3600000)
 // END
 
 });
