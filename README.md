@@ -5,7 +5,8 @@ Daily automatic countdown to Christmas in the channel you set, and a manual `x!c
 
 **Live Countdown:** [countdowntoxmas.tk](https://www.countdowntoxmas.tk)
 
-__**Commands**__
+__**Commands:**__
+
 `x!help` Command list.
 
 `x!ping` Ping pong. Useless.
