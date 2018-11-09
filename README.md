@@ -1,5 +1,5 @@
 # ChristmasCountdown
-**A Christmas countdown bot for Discord. (INCOMPLETE - DAILY COUNTDOWN IS NOT FINISHED)**
+**A Christmas countdown bot for Discord.** (INCOMPLETE - DAILY COUNTDOWN IS NOT FINISHED)
 
 Daily automatic countdown to Christmas in the channel you set, and a manual `x!countdown` command.
 
