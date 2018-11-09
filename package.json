@@ -1,0 +1,19 @@
+{
+  "name": "christmascountdown",
+  "version": "1.0.0",
+  "description": "A Christmas countdown Discord bot",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "enmap": "^4.3.3",
+    "moment": "^2.22.2",
+    "quick.db": "^7.0.0-b16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Eartharoid",
+  "license": "ISC"
+}
