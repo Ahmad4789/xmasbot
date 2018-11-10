@@ -2,9 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
 const db = require('quick.db');
-// const moment = require('moment');
-//const fs = require("fs");
-//const settings = require('./settings.json');
 const prefix = config.prefix;
 
 let today=new Date();
@@ -23,21 +20,22 @@ client.on('ready', () => {
 
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
-// console.log(now)
+// console.log(now) // testing
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
-    // if(moment().format("hh") == '00'){
 
     if(now == 0 || now == 00){
 
 
-      console.log(`There are ${daysleft} left to Christmas!`)
+      console.log(`There are ${daysleft} days left to Christmas!`);
+      console.log(`  > Sending daily countdown to x channels...`);
   } else {
     return;
   }
       // db.all()
-    }, 3600000)
+     }, 3600000) // 1 hour
+  //}, 60000) // 1 min for testing purposes >>>>>> MUST CHANGE <<<<<<<
 // END
 
 });
@@ -90,13 +88,15 @@ if (command === 'countdown') {
 if (command === 'channel') {
   if (!message.member.hasPermission("MANAGE_GUILD")) return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
 
-    //const errembed = new Discord.RichEmbed()
-    //.setTitle(`:x: Error`)
-    //.setDescription(`You need \`MANAGE_GUILD\` permission to do that!`)
-    //.setColor(0xBB0000)
-    //.setTimestamp()
-    //.setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
-    //message.channel.send({errembed});
+  /*
+    const noperms = new Discord.RichEmbed()
+    .setTitle(`:x: Error`)
+    .setDescription(`You need \`MANAGE_GUILD\` permission to set the countdown channel.`)
+    .setColor(0xBB0000)
+    .setTimestamp()
+    .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+    message.channel.send({noperms});
+*/
 
   // if has perms
   let chan = message.mentions.channels.first();
