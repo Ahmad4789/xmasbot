@@ -1,6 +1,11 @@
 /*
 COUNTDOWNTOXMAS : COUNTDOWN BOT
 MADE BY EARTHAROID
+
+>>>>>>>
+https://github.com/Eartharoid/ChristmasCountdown
+>>>>>>>
+
 ---------------------------------------
 sorry for bad code xD
 */
@@ -27,33 +32,31 @@ client.on('ready', () => {
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
 
-// console.log(now) // testing
-
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
-    if(now == 0 || now == 21){  // >>>>> MUST CHANGE TIME TO 00 <<<<<
+    if(now == 0 || now == 00){
       let data = db.fetchAll();
       for (var i = 0, len = data.length; i < len; i++) {
         let cc = data[i].data;
         let countdownchannel = cc.substring(21, 39);
         // console.log(countdownchannel) // testing
 
-        const cdembed = new Discord.RichEmbed()
+        const embed = new Discord.RichEmbed()
         .setTitle(`${daysleft} days to Christmas`)
         .setURL(`${config.website}`)
         .setDescription(`\nThere are **${daysleft}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}). \n${xmasmsg}\n`)
         .setColor(0xD60028)
         .setTimestamp()
         .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
-        client.channels.get(countdownchannel).send({cdembed});
+        client.channels.get(countdownchannel).send({embed});
     }
       console.log(`There are ${daysleft} days left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
   } else {
     return;
   }
-  //   }, 3600000) // 1 hour
-}, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
+    }, 3600000) // 1 hour
+// }, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
 // END
 
 });
@@ -105,21 +108,35 @@ if (command === 'countdown') {
   message.channel.send({embed});
 } else
 if (command === 'channel') {
-  if (!message.member.hasPermission("MANAGE_GUILD")) return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
+  if (!message.member.hasPermission("MANAGE_GUILD")) {
+  // return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
 
-  /*
-    const noperms = new Discord.RichEmbed()
+
+    const embed = new Discord.RichEmbed()
     .setTitle(`:x: Error`)
     .setDescription(`You need \`MANAGE_GUILD\` permission to set the countdown channel.`)
     .setColor(0xBB0000)
     .setTimestamp()
     .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
-    message.channel.send({noperms});
-*/
+    message.channel.send({embed});
+    return;
+}
 
   // if has perms
   let chan = message.mentions.channels.first();
-  if (!chan) return message.channel.send(":x: Error: `You need to mention a channel.`");
+  if (!chan){
+  // return message.channel.send(":x: Error: `You need to mention a channel.`");
+  const embed = new Discord.RichEmbed()
+  .setTitle(`:x: Error`)
+  .setDescription(`You need to mention a channel.`)
+  .setColor(0xBB0000)
+  .setTimestamp()
+  .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+  message.channel.send({embed});
+  return;
+  }
+
+
   // DATABASE
    db.set(message.guild.id, { countdownchannel: chan.id });
   // db.set(message.guild.id, chan.id);
