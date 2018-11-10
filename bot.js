@@ -1,3 +1,9 @@
+/*
+COUNTDOWNTOXMAS : COUNTDOWN BOT
+MADE BY EARTHAROID
+---------------------------------------
+sorry for bad code xD
+*/
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
