@@ -20,6 +20,8 @@ The important ones:
 
 `x!channel` Set the channel you want the automatic daily countdown to use. (required permission: `MANAGE_GUILD`)
 
+`x!reset` Deletes the set channel to disable the daily countdown. (required permission: `MANAGE_GUILD`)
+
 
 
 Thanks [ohlookitsderpy](https://github.com/ohlookitsderpy) for tips and storage stuff.

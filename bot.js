@@ -26,22 +26,42 @@ client.on('ready', () => {
 
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
+
+  // console.log(`\n\n${JSON.stringify(db.all())}`); // DEBUG
 // console.log(now) // testing
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
 
-    if(now == 0 || now == 00){
+    if(now == 0 || now == 20){  // >>>>> MUST CHANGE TIME TO 00 <<<<<
+      // let data = [JSON.stringify(db.all())];
+      let data = db.fetchAll();
 
 
+
+      for (var i = 0, len = data.length; i < len; i++) {
+        // let channelID = db.get(data[i].countdownchannel);
+        // let channelID = db.get(countdownchannel);
+        console.log(data);
+
+      /*  const countdownembed = new Discord.RichEmbed()
+        .setTitle(`${daysleft} days to Christmas`)
+        .setURL(`${config.website}`)
+        .setDescription(`\nThere are **${daysleft}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}). \n${xmasmsg}\n`)
+        .setColor(0xD60028)
+        .setTimestamp()
+        .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+        client.channels.get(channelID).send({countdownembed});*/
+  // someFn(channels[i]);
+    }
       console.log(`There are ${daysleft} days left to Christmas!`);
-      console.log(`  > Sending daily countdown to x channels...`);
+      console.log(`  > Sending daily countdown to ${data.length} channels...`);
   } else {
     return;
   }
       // db.all()
-     }, 3600000) // 1 hour
-  //}, 60000) // 1 min for testing purposes >>>>>> MUST CHANGE <<<<<<<
+  //   }, 3600000) // 1 hour
+}, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
 // END
 
 });
@@ -71,12 +91,13 @@ if(command === 'ping') {
 if (command === 'help') {
   const embed = new Discord.RichEmbed()
   .setTitle("Countdown Bot > Help")
-  .setDescription(`Serving ${client.users.size} users in ${client.guilds.size} guilds.`)
+  .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
   .setColor(0x009999)
   .addField(`${prefix}ping`, `Displays the latency`)
-  .addField(`${prefix}channel`, `Set the channel you want the countdown to use`)
-  .addField(`${prefix}website`, `Displays link`)
+  .addField(`${prefix}website`, `Displays live countdown link`)
   .addField(`${prefix}countdown`, `Shows how many days until Christmas`)
+  .addField(`${prefix}channel`, `Set the channel you want the countdown to use`)
+  .addField(`${prefix}reset`, `Reset settings & disable daily countdown`)
   .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
   message.channel.send({embed});
 } else
@@ -108,7 +129,8 @@ if (command === 'channel') {
   let chan = message.mentions.channels.first();
   if (!chan) return message.channel.send(":x: Error: `You need to mention a channel.`");
   // DATABASE
-  db.set(message.guild.id, { countdownchannel: chan.id });
+   db.set(message.guild.id, { countdownchannel: chan.id });
+  // db.set(message.guild.id, chan.id);
 
   const embed = new Discord.RichEmbed()
   .setTitle("Countdown Bot > Settings")
@@ -122,6 +144,19 @@ if (command === 'website') {
   .setTitle("Countdown Bot > Website")
   .setURL(`${config.website}`)
   .setDescription(`Countdown to Christmas live at [countdowntoxmas.tk](${config.website})`)
+  .setColor(0x009999)
+  .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+  message.channel.send({embed});
+} else
+if (command === 'reset') {
+  if (!message.member.hasPermission("MANAGE_GUILD")) return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
+  // if has perms
+  // DATABASE
+  db.delete(message.guild.id);
+
+  const embed = new Discord.RichEmbed()
+  .setTitle("Countdown Bot > Settings")
+  .setDescription(`Daily countdown disabled. \nType \`${config.prefix}channel <#channel>\` to set and enable the countdown.`)
   .setColor(0x009999)
   .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
   message.channel.send({embed});
