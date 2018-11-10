@@ -61,6 +61,22 @@ setInterval(() => {
 
 });
 
+client.on("guildCreate", guild => {
+  guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
+  const embed = new Discord.RichEmbed()
+  .setTitle("Countdown Bot > Help")
+  .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
+  .setColor(0x009999)
+  .addField(`${prefix}ping`, `Displays the latency`)
+  .addField(`${prefix}website`, `Displays live countdown link`)
+  .addField(`${prefix}countdown`, `Shows how many days until Christmas`)
+  .addField(`${prefix}channel`, `Set the channel you want the countdown to use`)
+  .addField(`${prefix}reset`, `Reset settings & disable daily countdown`)
+  .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+  guild.owner.send({embed});
+});
+
+
 client.on('message', async message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
