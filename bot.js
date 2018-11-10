@@ -110,8 +110,6 @@ if (command === 'countdown') {
 if (command === 'channel') {
   if (!message.member.hasPermission("MANAGE_GUILD")) {
   // return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
-
-
     const embed = new Discord.RichEmbed()
     .setTitle(`:x: Error`)
     .setDescription(`You need \`MANAGE_GUILD\` permission to set the countdown channel.`)
@@ -121,7 +119,6 @@ if (command === 'channel') {
     message.channel.send({embed});
     return;
 }
-
   // if has perms
   let chan = message.mentions.channels.first();
   if (!chan){
@@ -135,8 +132,6 @@ if (command === 'channel') {
   message.channel.send({embed});
   return;
   }
-
-
   // DATABASE
    db.set(message.guild.id, { countdownchannel: chan.id });
   // db.set(message.guild.id, chan.id);
@@ -158,7 +153,17 @@ if (command === 'website') {
   message.channel.send({embed});
 } else
 if (command === 'reset') {
-  if (!message.member.hasPermission("MANAGE_GUILD")) return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
+  if (!message.member.hasPermission("MANAGE_GUILD")) {
+  // return  message.channel.send(":x: Error: `You don't have the required permission! (MANAGE_GUILD)`");
+    const embed = new Discord.RichEmbed()
+    .setTitle(`:x: Error`)
+    .setDescription(`You need \`MANAGE_GUILD\` permission to set the countdown channel.`)
+    .setColor(0xBB0000)
+    .setTimestamp()
+    .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+    message.channel.send({embed});
+    return;
+  }
   // if has perms
   // DATABASE
   db.delete(message.guild.id);
