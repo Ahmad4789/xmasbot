@@ -27,39 +27,31 @@ client.on('ready', () => {
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
 
-  // console.log(`\n\n${JSON.stringify(db.all())}`); // DEBUG
 // console.log(now) // testing
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
-
-    if(now == 0 || now == 20){  // >>>>> MUST CHANGE TIME TO 00 <<<<<
-      // let data = [JSON.stringify(db.all())];
+    if(now == 0 || now == 21){  // >>>>> MUST CHANGE TIME TO 00 <<<<<
       let data = db.fetchAll();
-
-
-
       for (var i = 0, len = data.length; i < len; i++) {
-        // let channelID = db.get(data[i].countdownchannel);
-        // let channelID = db.get(countdownchannel);
-        console.log(data);
+        let cc = data[i].data;
+        let countdownchannel = cc.substring(21, 39);
+        // console.log(countdownchannel) // testing
 
-      /*  const countdownembed = new Discord.RichEmbed()
+        const cdembed = new Discord.RichEmbed()
         .setTitle(`${daysleft} days to Christmas`)
         .setURL(`${config.website}`)
         .setDescription(`\nThere are **${daysleft}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}). \n${xmasmsg}\n`)
         .setColor(0xD60028)
         .setTimestamp()
         .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
-        client.channels.get(channelID).send({countdownembed});*/
-  // someFn(channels[i]);
+        client.channels.get(countdownchannel).send({cdembed});
     }
       console.log(`There are ${daysleft} days left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
   } else {
     return;
   }
-      // db.all()
   //   }, 3600000) // 1 hour
 }, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
 // END
@@ -164,6 +156,7 @@ if (command === 'reset') {
 if (command === 'test') {
   let channel = db.get(`${message.guild.id}.countdownchannel`);
   message.channel.send(channel)
+  client.channels.get(channel).send(`:white_check_mark: Success!`);
 }
   // Commands end here
 });
