@@ -216,10 +216,4 @@ if (command === 'test') {
 });
 
 
-
-// DAILY COUNTDOWN: START
-//let channel = db.get(`${message.guild.id}.countdownchannel`);
-// DAILY COUNTDOWN: END
-
-
 client.login(config.token);
