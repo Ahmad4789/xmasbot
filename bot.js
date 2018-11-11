@@ -62,7 +62,7 @@ setInterval(() => {
 });
 
 client.on("guildCreate", guild => {
-  if(client.guilds.size == 4) {guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 100th SERVER!\n`);}
+  if(client.guilds.size == 100) {guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 100th SERVER!\n`);}
   // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
   guild.owner.send(`**»** **»** Hello, ${guild.owner}. Thanks for adding my bot to your server. \nEvery day at some time between \`00:00\` and \`01:00\` (UTC), the bot will send the daily countdown message to the channel you set with \`${config.prefix}channel\`. Typing \`${config.prefix}countdown\` will display the same message.\nIf you would like to disable the daily countdown, type  \`${config.prefix}reset\`, which will still allow users to use the manual countdown command.\nIf you like this bot, please upvote it at ${config.dbl} and share it with your friends to help other people find it.\nThanks,\n-<@319467558166069248>`);
   const embed = new Discord.RichEmbed()
