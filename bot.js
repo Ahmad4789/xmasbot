@@ -40,15 +40,18 @@ setInterval(() => {
         let cc = data[i].data;
         let countdownchannel = cc.substring(21, 39);
         // console.log(countdownchannel) // testing
-
-        const embed = new Discord.RichEmbed()
-        .setTitle(`${daysleft} days to Christmas`)
-        .setURL(`${config.website}`)
-        .setDescription(`\nThere are **${daysleft}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}). \n${xmasmsg}\n`)
-        .setColor(0xD60028)
-        .setTimestamp()
-        .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
-        client.channels.get(countdownchannel).send({embed});
+        try{
+          const embed = new Discord.RichEmbed()
+          .setTitle(`${daysleft} days to Christmas`)
+          .setURL(`${config.website}`)
+          .setDescription(`\nThere are **${daysleft}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}). \n${xmasmsg}\n`)
+          .setColor(0xD60028)
+          .setTimestamp()
+          .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
+          client.channels.get(countdownchannel).send({embed});
+        } catch(err){
+          return; // if error, do nothing
+        }
     }
       console.log(`There are ${daysleft} days left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
@@ -64,7 +67,7 @@ setInterval(() => {
 client.on("guildCreate", guild => {
   if(client.guilds.size == 100) {guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 100th SERVER!\n`);}
   // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
-  guild.owner.send(`**»** **»** Hello, ${guild.owner}. Thanks for adding my bot to your server. \nEvery day at some time between \`00:00\` and \`01:00\` (UTC), the bot will send the daily countdown message to the channel you set with \`${config.prefix}channel\`. Typing \`${config.prefix}countdown\` will display the same message.\nIf you would like to disable the daily countdown, type  \`${config.prefix}reset\`, which will still allow users to use the manual countdown command.\nIf you like this bot, please upvote it at ${config.dbl} and share it with your friends to help other people find it.\nThanks,\n-<@319467558166069248>`);
+  guild.owner.send(`**»** Hello, ${guild.owner}. Thanks for adding my bot to your server. \nEvery day at some time between \`00:00\` and \`01:00\` (UTC), the bot will send the daily countdown message to the channel you set with \`${config.prefix}channel\`. Typing \`${config.prefix}countdown\` will display the same message.\nIf you would like to disable the daily countdown, type  \`${config.prefix}reset\`, which will still allow users to use the manual countdown command.\nIf you like this bot, please upvote it at ${config.dbl} and share it with your friends to help other people find it.\nThanks,\n-<@319467558166069248>`);
   const embed = new Discord.RichEmbed()
   .setTitle("Countdown Bot > Help")
   .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
@@ -78,8 +81,19 @@ client.on("guildCreate", guild => {
   guild.owner.send({embed});
 });
 
+client.on("guildDelete", guild => {
+  try {
+    db.delete(guild.id)
+    guild.owner.send(`**»** Settings for \`${guild.name}\` (\`${guild.id}\`) has been removed from the database.\``)
+  } catch(error){
+    return;
+  }
+
+});
+
 
 client.on('message', async message => {
+  if(message.author.bot) return;
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
