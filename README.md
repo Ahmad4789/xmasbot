@@ -1,7 +1,9 @@
 # ChristmasCountdown
-**A Christmas countdown bot for Discord.** (INCOMPLETE - DAILY COUNTDOWN IS NOT FINISHED)
+**A Christmas countdown bot for Discord.**
 
 Daily automatic countdown to Christmas in the channel you set, and a manual `x!countdown` command.
+
+Information: [DiscordBotList](https://discordbots.org/bot/509851616216875019/) / [website](https://www.countdowntoxmas.tk/discord)
 
 **Live Countdown:** [countdowntoxmas.tk](https://www.countdowntoxmas.tk)
 
