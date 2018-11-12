@@ -210,11 +210,11 @@ if (command === 'reset') {
   .setColor(0x009999)
   .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
   message.channel.send({embed});
-} else
-if (command === 'test') {
-  let channel = db.get(`${message.guild.id}.countdownchannel`);
-  message.channel.send(channel)
-  client.channels.get(channel).send(`:white_check_mark: Success!`);
+} //else
+// if (command === 'test') {
+  // let channel = db.get(`${message.guild.id}.countdownchannel`);
+  // message.channel.send(channel)
+  // client.channels.get(channel).send(`:white_check_mark: Success!`);
 }
   // Commands end here
 });
