@@ -14,6 +14,8 @@ const client = new Discord.Client();
 const config = require('./config.json');
 const db = require('quick.db');
 const prefix = config.prefix;
+const discordbots = require("dblapi.js");
+const dbl = new discordbots(config.dblapikey, client);
 
 setInterval(() => {
 let today=new Date();
@@ -28,11 +30,30 @@ let now = today.getHours();
 }, 3600000) // 1 hour
 
 
+
+// DBL EVENTS
+dbl.on('posted', () => {
+  console.log('Posted server count to discordbots.org');
+});
+
+dbl.on('error', e => {
+ console.log(`[DBL ERROR] ${e}`);
+});
+// DBL
+dbl.on('ready', hook => {
+  console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
+});
+
+
 client.on('ready', () => {
   console.log(`CountdownToXMAS Bot\nConnected as ${client.user.tag}\nReady to countdown in ${client.guilds.size} servers for ${client.users.size} users...\n`);
 
   client.user.setPresence({ game: { name: `on ${config.website} | ${config.prefix}help` }, status: 'dnd' })
   .catch(console.error);
+  setInterval(() => {
+          dbl.postStats(client.guilds.size);
+      }, 1800000);
+
 
 // [AUTO] DAILY COUNTDOWN
 setInterval(() => {
@@ -210,12 +231,12 @@ if (command === 'reset') {
   .setColor(0x009999)
   .setFooter(`CountdownToXMAS - Made by ${config.creator}`,`${config.website}/icon.png`)
   message.channel.send({embed});
-} //else
+}; //else
 // if (command === 'test') {
   // let channel = db.get(`${message.guild.id}.countdownchannel`);
   // message.channel.send(channel)
   // client.channels.get(channel).send(`:white_check_mark: Success!`);
-}
+
   // Commands end here
 });
 
