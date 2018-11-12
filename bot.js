@@ -17,7 +17,6 @@ const prefix = config.prefix;
 const discordbots = require("dblapi.js");
 const dbl = new discordbots(config.dblapikey, client);
 
-setInterval(() => {
 let today=new Date();
 var xmas=new Date(today.getFullYear(), 11, 24);
 if (today.getMonth()==11 && today.getDate()>24){ xmas.setFullYear(xmas.getFullYear()+1);}
@@ -27,7 +26,6 @@ let xmasmsg = "";
 if (daysleft == 1) {let xmasmsg="It's Christmas Eve!";}
 if (daysleft < 1) {let xmasmsg=":snowflake: **Merry Christmas!** :snowflake:";}
 let now = today.getHours();
-}, 3600000) // 1 hour
 
 
 
