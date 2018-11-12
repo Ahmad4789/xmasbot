@@ -15,6 +15,7 @@ const config = require('./config.json');
 const db = require('quick.db');
 const prefix = config.prefix;
 
+setInterval(() => {
 let today=new Date();
 var xmas=new Date(today.getFullYear(), 11, 24);
 if (today.getMonth()==11 && today.getDate()>24){ xmas.setFullYear(xmas.getFullYear()+1);}
@@ -23,8 +24,9 @@ let daysleft = Math.ceil((xmas.getTime()-today.getTime())/(one_day));
 let xmasmsg = "";
 if (daysleft == 1) {let xmasmsg="It's Christmas Eve!";}
 if (daysleft < 1) {let xmasmsg=":snowflake: **Merry Christmas!** :snowflake:";}
-
 let now = today.getHours();
+}, 3600000) // 1 hour
+
 
 client.on('ready', () => {
   console.log(`CountdownToXMAS Bot\nConnected as ${client.user.tag}\nReady to countdown in ${client.guilds.size} servers for ${client.users.size} users...\n`);
@@ -66,9 +68,11 @@ setInterval(() => {
 
 client.on("guildCreate", guild => {
   if(client.guilds.size == 100) {guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 100th SERVER!\n`);}
-  // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
+  // OLD // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
+
+
   guild.owner.send(`**»** Hello, ${guild.owner}. Thanks for adding my bot to your server. \nEvery day at some time between \`00:00\` and \`01:00\` (UTC), the bot will send the daily countdown message to the channel you set with \`${config.prefix}channel\`. Typing \`${config.prefix}countdown\` will display the same message.\nIf you would like to disable the daily countdown, type  \`${config.prefix}reset\`, which will still allow users to use the manual countdown command.\nIf you like this bot, please upvote it at ${config.dbl} and share it with your friends to help other people find it.\nThanks,\n-<@319467558166069248>`);
-  const embed = new Discord.RichEmbed()
+   const embed = new Discord.RichEmbed()
   .setTitle("Countdown Bot > Help")
   .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
   .setColor(0x009999)

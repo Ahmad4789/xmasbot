@@ -1,6 +1,6 @@
 {
   "name": "christmascountdown",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A Christmas countdown Discord bot",
   "main": "bot.js",
   "dependencies": {
@@ -13,9 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Eartharoid/ChristmasCountdown.git"
+    "url": "git+https://github.com/Eartharoid/ChristmasCountdown.git"
   },
   "keywords": [],
   "author": "Eartharoid",
-  "license": "ISC"
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Eartharoid/ChristmasCountdown/issues"
+  },
+  "homepage": "https://github.com/Eartharoid/ChristmasCountdown#readme"
 }
