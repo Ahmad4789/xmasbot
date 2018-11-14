@@ -5,7 +5,7 @@ Daily automatic countdown to Christmas in the channel you set, and a manual `x!c
 
 Information: [DiscordBotList](https://discordbots.org/bot/509851616216875019/) / [website](https://www.countdowntoxmas.tk/discord)
 
-**Live Countdown:** [countdowntoxmas.tk](https://www.countdowntoxmas.tk)
+**Live Countdown:** [countdowntoxmas.tk](https://www.countdowntoxmas.tk/?utm_source=github)
 
 __**Commands:**__
 
@@ -16,7 +16,7 @@ __**Commands:**__
 
 The important ones:
 
-`x!website` Just a link to [countdowntoxmas.tk](https://www.countdowntoxmas.tk)
+`x!website` Just a link to [countdowntoxmas.tk](https://www.countdowntoxmas.tk/?utm_source=github)
 
 `x!countdown` Displays number of days left until Christmas, and a link to the live countdown.
 
