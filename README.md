@@ -3,7 +3,7 @@
 
 Daily automatic countdown to Christmas in the channel you set, and a manual `x!countdown` command.
 
-Information: [DiscordBotList](https://discordbots.org/bot/509851616216875019/) / [website](https://www.countdowntoxmas.tk/discord)
+Information: [DiscordBotList](https://discordbots.org/bot/509851616216875019/)
 
 **Live Countdown:** [countdowntoxmas.tk](https://www.countdowntoxmas.tk/?utm_source=github)
 
