@@ -90,7 +90,7 @@ client.on('ready', () => {
   // [AUTO] DAILY COUNTDOWN
   setInterval(() => {
 
-    if (now() == 0 || now() == 22) {
+    if (now() == 0 || now() == 00) {
       let data = db.fetchAll();
       for (var i = 0, len = data.length; i < len; i++) {
         let cc = data[i].data;
@@ -116,6 +116,19 @@ client.on('ready', () => {
         // client.channels.get(countdownchannel).guild.owner.send(`Sorry, looks like the bot doesn't have \`SEND_MESSAGES\` or \`EMBED_LINKS\` permissions in the countdown channel. The countdown was not sent.`);
         // return;
         // }
+      } // END OF FOR LOOP
+      // LOGGER
+      try {
+        const embed = new Discord.RichEmbed()
+          .setTitle("Countdown Bot > Log")
+          .setDescription(`Sending daily countdown to ${data.length} channels...`)
+          .setColor(0xD60028)
+          .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
+        client.channels.get(config.logchannel).send({
+          embed
+        });
+      } catch (e) {
+        return;
       }
       console.log(`There are ${daysleft()} days left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
