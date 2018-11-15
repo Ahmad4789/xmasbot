@@ -111,8 +111,8 @@ setInterval(() => {
   } else {
     return;
   }
-    // }, 3600000) // 1 hour
-}, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
+}, 3600000) // 1 hour
+// }, 5000) // for testing purposes >>>>>> MUST CHANGE <<<<<<<
 // END
 
 });
