@@ -160,7 +160,7 @@ const client = new Discord.Client({
       guild.owner.send(`**»** Hello, ${guild.owner}. Thanks for adding my bot to your server. \nEvery day between \`00:00\` and \`01:00\` (UTC), the bot will send the daily countdown message to the channel you set with \`${config.prefix}channel\`. Typing \`${config.prefix}countdown\` will display the same message.\nIf you would like to disable the daily countdown, type  \`${config.prefix}reset\`, which will still allow users to use the manual countdown command.\nPlease ensure the bot has permission to embed links and send messages to the countdown channel.\nIf you like this bot, please upvote it at ${config.dbl} and share it with your friends :)\nThanks,\n-<@319467558166069248>`);
       const embed = new Discord.RichEmbed()
         .setTitle("Countdown Bot > Help")
-        .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
+        .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.\nSupport: ${config.dbl}`)
         .setColor(0x009999)
         .addField(`${prefix}ping`, `Displays the latency`)
         .addField(`${prefix}website`, `Displays live countdown link`)
@@ -247,7 +247,7 @@ const client = new Discord.Client({
             // ACTION
             const embed = new Discord.RichEmbed()
               .setTitle("Countdown Bot > Help")
-              .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.`)
+              .setDescription(`Counting down for ${client.users.size} users in ${client.guilds.size} guilds.\nSupport: ${config.dbl}`)
               .setColor(0x009999)
               .addField(`${prefix}ping`, `Displays the latency`)
               .addField(`${prefix}website`, `Displays live countdown link`)
