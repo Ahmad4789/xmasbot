@@ -28,4 +28,4 @@ The important ones:
 
 
 
-Thanks [ohlookitsderpy](https://github.com/ohlookitsderpy) for tips and storage stuff.
+Thanks [ohlookitsderpy](https://github.com/ohlookitsderpy) for tips and storage stuff and [Speyd3r](https://github.com/Speyd3r) for hosting. :)
