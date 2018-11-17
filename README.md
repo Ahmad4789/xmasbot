@@ -1,6 +1,8 @@
 # ChristmasCountdown
 **A Christmas countdown bot for Discord.**
 
+[![Discord Bots](https://discordbots.org/api/widget/status/509851616216875019.svg)](https://discordbots.org/bot/509851616216875019) [![Discord Bots](https://discordbots.org/api/widget/servers/509851616216875019.svg)](https://discordbots.org/bot/509851616216875019)
+
 Daily automatic countdown to Christmas in the channel you set, and a manual `x!countdown` command.
 
 Information: [DiscordBotList](https://discordbots.org/bot/509851616216875019/)
