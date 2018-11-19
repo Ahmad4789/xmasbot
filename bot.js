@@ -101,7 +101,7 @@ const client = new Discord.Client({
         boats.postStats(client.guilds.size, client.user.id).then(console.log('Posted server count to discord.boats'));
         Client.postStats(client.guilds.size).then(console.log('Posted server count to discordbotindex.com'));
       } catch {
-        console.log(`There was an error whilst posted the server count.`)
+        console.log(`There was an error whilst posting the server count.`)
       }
       }, 1800000);
 
