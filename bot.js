@@ -103,8 +103,7 @@ const client = new Discord.Client({
       } catch {
         console.log(`There was an error whilst posted the server count.`)
       }
-      //}, 1800000);
-    }, 5000);
+      }, 1800000);
 
 
       // [AUTO] DAILY COUNTDOWN
