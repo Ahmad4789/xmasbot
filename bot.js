@@ -22,6 +22,11 @@ const client = new Discord.Client({
     const prefix = config.prefix;
     const discordbots = require("dblapi.js");
     const dbl = new discordbots(config.dblapikey, client);
+    const dboats = require("boats.js");
+    const boats = new dboats(config.dbapikey);
+    const { Client: dbiClient } = require('dbi.js');
+    const Client = new dbiClient(config.dbiapikey, { id: '509851616216875019' });
+    //const dbi = new dbiClient(config.dbiapikey, { id: '509851616216875019' });
 
     // let today=new Date();
     // var xmas=new Date(today.getFullYear(), 11, 24);
@@ -91,8 +96,15 @@ const client = new Discord.Client({
         })
         .catch(console.error);
       setInterval(() => {
+        try{
         dbl.postStats(client.guilds.size);
-      }, 1800000);
+        boats.postStats(client.guilds.size, client.user.id).then(console.log('Posted server count to discord.boats'));
+        Client.postStats(client.guilds.size).then(console.log('Posted server count to discordbotindex.com'));
+      } catch {
+        console.log(`There was an error whilst posted the server count.`)
+      }
+      //}, 1800000);
+    }, 5000);
 
 
       // [AUTO] DAILY COUNTDOWN
@@ -359,8 +371,8 @@ const client = new Discord.Client({
             // ACTION
             const embed = new Discord.RichEmbed()
               .setTitle("Countdown Bot > Website")
-              .setURL(`${config.website}`)
-              .setDescription(`Countdown to Christmas live at [countdowntoxmas.tk](${config.website})`)
+              .setURL(`${config.website}/?utm_source=discord`)
+              .setDescription(`Countdown to Christmas live at [countdowntoxmas.tk](${config.website})/?utm_source=discord`)
               .setColor(0x009999)
               .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
             message.channel.send({
