@@ -123,9 +123,9 @@ client.on('ready', () => {
         // if(client.channels.get(countdownchannel).permissionsFor(client.channels.get(countdownchannel).guild.me).has('SEND_MESSAGES') && client.channels.get(countdownchannel).permissionsFor(client.channels.get(countdownchannel).guild.me).has('EMBED_LINKS')){
         try {
           const embed = new Discord.RichEmbed()
-            .setTitle(`${daysleft()} days to Christmas`)
+            .setTitle(`${daysleft()} sleeps to Christmas`)
             .setURL(`${config.website}/?utm_source=discord`)
-            .setDescription(`\nThere are **${daysleft()}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+            .setDescription(`\nThere are **${daysleft()}** sleep until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
             .setColor(0xD60028)
             .setTimestamp()
             .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -180,7 +180,7 @@ client.on("guildCreate", guild => {
     .setColor(0x009999)
     .addField(`${prefix}ping`, `Displays the latency`)
     .addField(`${prefix}website`, `Displays live countdown link`)
-    .addField(`${prefix}countdown`, `Shows how many days until Christmas`)
+    .addField(`${prefix}countdown`, `Shows how many sleeps until Christmas`)
     .addField(`${prefix}channel`, `Set the channel you want the countdown to use`)
     .addField(`${prefix}reset`, `Reset settings & disable daily countdown`)
     .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -267,7 +267,7 @@ client.on('message', async message => {
           .setColor(0x009999)
           .addField(`${prefix}ping`, `Displays the latency`)
           .addField(`${prefix}website`, `Displays live countdown link`)
-          .addField(`${prefix}countdown`, `Shows how many days until Christmas`)
+          .addField(`${prefix}countdown`, `Shows how many sleeps until Christmas`)
           .addField(`${prefix}channel`, `Set the channel you want the countdown to use`)
           .addField(`${prefix}reset`, `Reset settings & disable daily countdown`)
           .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -287,9 +287,9 @@ client.on('message', async message => {
     if (message.channel.permissionsFor(message.channel.guild.me).has('SEND_MESSAGES') && message.channel.permissionsFor(message.channel.guild.me).has('EMBED_LINKS')) {
       try {
         const embed = new Discord.RichEmbed()
-          .setTitle(`${daysleft()} days to Christmas`)
+          .setTitle(`${daysleft()} sleeps to Christmas`)
           .setURL(`${config.website}/?utm_source=discord`)
-          .setDescription(`\nThere are **${daysleft()}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+          .setDescription(`\nThere are **${daysleft()}** sleeps until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
           .setColor(0xD60028)
           .setTimestamp()
           .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -303,9 +303,9 @@ client.on('message', async message => {
       if (!message.author.dmChannel) return;
       message.member.send(`Sorry, looks like I don't have permission to respond in that channel.`)
       const embed = new Discord.RichEmbed()
-        .setTitle(`${daysleft()} days to Christmas`)
+        .setTitle(`${daysleft()} sleeps to Christmas`)
         .setURL(`${config.website}`)
-        .setDescription(`\nThere are **${daysleft()}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+        .setDescription(`\nThere are **${daysleft()}** sleeps until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
         .setColor(0xD60028)
         .setTimestamp()
         .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
