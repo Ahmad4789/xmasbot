@@ -31,3 +31,4 @@ The important ones:
 Thanks [ohlookitsderpy](https://github.com/ohlookitsderpy) for tips and storage stuff and [Speyd3r](https://github.com/Speyd3r) for hosting. :)
 
 [![discord.boats](https://discord.boats/api/widget/509851616216875019)](https://discord.boats/bot/509851616216875019/)
+[![discordbots.org](https://discordbots.org/api/widget/509851616216875019.svg)](https://discordbots.org/bot/509851616216875019)
