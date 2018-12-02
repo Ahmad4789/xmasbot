@@ -48,7 +48,7 @@ dbl.on('posted', () => {
   console.log(`Posted server count to bot lists.`);
 });
 dbl.on('vote', vote => {
-  console.log(`Someone (${vote.user}) just voted!`);
+  console.log(`[DBL] Someone (${vote.user}) just voted!`);
 });
 
 dbl.on('error', e => {
@@ -212,16 +212,19 @@ client.on("guildDelete", guild => {
 
 
 client.on('message', async message => {
+  const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+  const msgprefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : config.prefix;
+
   let msgcont = message.content.toLowerCase();
   //if (!message.content.startsWith(config.prefix)) {
-  if (!msgcont.startsWith(config.prefix)) {
+  if (!msgcont.startsWith(msgprefix)) {
     return;
   }
   if (message.author.bot) return;
   if (message.channel.type !== `text`) {
     return;
   }
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(msgprefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
   // LOGGER
