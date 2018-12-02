@@ -45,7 +45,7 @@ const Client = new dbiClient(config.dbiapikey, {
 
 // DBL EVENTS
 dbl.on('posted', () => {
-  console.log(`Posted server count to discordbots.org`);
+  console.log(`Posted server count to bot lists.`);
 });
 dbl.on('vote', vote => {
   console.log(`Someone (${vote.user}) just voted!`);
@@ -73,7 +73,7 @@ function daysleft() { // returns d days
   }
   let one_day = 1000 * 60 * 60 * 24;
   let daysleft = Math.ceil((xmas.getTime() - today.getTime()) / (one_day));
-  return daysleft;
+  return daysleft+1;
 }
 
 function xmasmsg() { // returns string
@@ -85,6 +85,16 @@ function xmasmsg() { // returns string
     let rmsg = ":snowflake: **Merry Christmas!** :snowflake:";
   }
   return rmsg;
+}
+
+function dmsg() { // returns string
+  // if (daysleft() == 1) {
+  //   let rmsg = "day";
+  // } else {
+  //   let rmsg = "days";
+  // }
+  // return rmsg;
+   return (daysleft() == 1 ? "day" : "days"); // ImIllusion
 }
 
 
@@ -103,8 +113,8 @@ client.on('ready', () => {
   setInterval(() => {
     try {
       dbl.postStats(client.guilds.size);
-      boats.postStats(client.guilds.size, client.user.id).then(console.log('Posted server count to discord.boats'));
-      Client.postStats(client.guilds.size).then(console.log('Posted server count to discordbotindex.com'));
+      boats.postStats(client.guilds.size, client.user.id);
+      Client.postStats(client.guilds.size);
     } catch {
       console.log(`There was an error whilst posting the server count.`)
     }
@@ -114,7 +124,7 @@ client.on('ready', () => {
   // [AUTO] DAILY COUNTDOWN
   setInterval(() => {
 
-    if (now() == 0 || now() == 00) {
+    if (now() == 1 || now() == 01) {
       let data = db.fetchAll();
       for (var i = 0, len = data.length; i < len; i++) {
         let cc = data[i].data;
@@ -123,9 +133,9 @@ client.on('ready', () => {
         // if(client.channels.get(countdownchannel).permissionsFor(client.channels.get(countdownchannel).guild.me).has('SEND_MESSAGES') && client.channels.get(countdownchannel).permissionsFor(client.channels.get(countdownchannel).guild.me).has('EMBED_LINKS')){
         try {
           const embed = new Discord.RichEmbed()
-            .setTitle(`${daysleft()} days to Christmas`)
+            .setTitle(`${daysleft()} ${dmsg()} to Christmas`)
             .setURL(`${config.website}/?utm_source=discord`)
-            .setDescription(`\nThere are **${daysleft()}** sleep until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+            .setDescription(`\nThere are **${daysleft()}** ${dmsg()} until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
             .setColor(0xD60028)
             .setTimestamp()
             .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -154,7 +164,7 @@ client.on('ready', () => {
       } catch (e) {
         return;
       }
-      console.log(`There are ${daysleft()} days left to Christmas!`);
+      console.log(`There are ${daysleft()} ${dmsg} left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
     } else {
       return;
@@ -167,8 +177,8 @@ client.on('ready', () => {
 
 client.on("guildCreate", guild => {
   if (!guild.owner.dmChannel) return;
-  if (client.guilds.size == 100) {
-    guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 100th SERVER!\n`);
+  if (client.guilds.size == 500) {
+    guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 500th SERVER!\n`);
   }
   // OLD // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
 
@@ -202,7 +212,9 @@ client.on("guildDelete", guild => {
 
 
 client.on('message', async message => {
-  if (!message.content.startsWith(config.prefix)) {
+  let msgcont = message.content.toLowerCase();
+  //if (!message.content.startsWith(config.prefix)) {
+  if (!msgcont.startsWith(config.prefix)) {
     return;
   }
   if (message.author.bot) return;
@@ -287,9 +299,9 @@ client.on('message', async message => {
     if (message.channel.permissionsFor(message.channel.guild.me).has('SEND_MESSAGES') && message.channel.permissionsFor(message.channel.guild.me).has('EMBED_LINKS')) {
       try {
         const embed = new Discord.RichEmbed()
-          .setTitle(`${daysleft()} days to Christmas`)
+          .setTitle(`${daysleft()} ${dmsg()} to Christmas`)
           .setURL(`${config.website}/?utm_source=discord`)
-          .setDescription(`\nThere are **${daysleft()}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+          .setDescription(`\nThere are **${daysleft()}** ${dmsg()} until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
           .setColor(0xD60028)
           .setTimestamp()
           .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
@@ -303,9 +315,9 @@ client.on('message', async message => {
       if (!message.author.dmChannel) return;
       message.member.send(`Sorry, looks like I don't have permission to respond in that channel.`)
       const embed = new Discord.RichEmbed()
-        .setTitle(`${daysleft()} days to Christmas`)
+        .setTitle(`${daysleft()} ${dmsg()} to Christmas`)
         .setURL(`${config.website}`)
-        .setDescription(`\nThere are **${daysleft()}** days until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
+        .setDescription(`\nThere are **${daysleft()}** ${dmsg()} until Christmas! \n\nCountdown to Christmas live at [countdowntoxmas.tk](${config.website}?utm_source=discord). \n${xmasmsg()}\n`)
         .setColor(0xD60028)
         .setTimestamp()
         .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
