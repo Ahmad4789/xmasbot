@@ -73,17 +73,21 @@ function daysleft() { // returns d days
   }
   let one_day = 1000 * 60 * 60 * 24;
   let daysleft = Math.ceil((xmas.getTime() - today.getTime()) / (one_day));
+  // return (daysleft()+1 == 1 ? "day" : "days");
   return daysleft+1;
 }
 
 function xmasmsg() { // returns string
   let rmsg = "";
-  if (daysleft() == 1) {
-    let rmsg = "It's Christmas Eve!";
-  }
-  if (daysleft() < 1) {
-    let rmsg = ":snowflake: **Merry Christmas!** :snowflake:";
-  }
+  // if (daysleft() == 1) {
+  //   let rmsg = "It's Christmas Eve!";
+  // }
+  // if (daysleft() < 1) {
+  //   let rmsg = ":snowflake: **Merry Christmas!** :snowflake:";
+  // }
+ if(daysleft() < 2){
+    let rmsg = 1 ? "It's Christmas Eve!" : ":snowflake: **Merry Christmas!** :snowflake:";
+ }
   return rmsg;
 }
 
@@ -94,7 +98,7 @@ function dmsg() { // returns string
   //   let rmsg = "days";
   // }
   // return rmsg;
-   return (daysleft() == 1 ? "day" : "days"); // ImIllusion
+   return (daysleft() == 1 ? "sleep" : "sleeps"); // ImIllusion
 }
 
 
@@ -391,7 +395,7 @@ client.on('message', async message => {
         const embed = new Discord.RichEmbed()
           .setTitle("Countdown Bot > Website")
           .setURL(`${config.website}/?utm_source=discord`)
-          .setDescription(`Countdown to Christmas live at [countdowntoxmas.tk](${config.website})/?utm_source=discord`)
+          .setDescription(`Countdown to Christmas live at [countdowntoxmas.tk](${config.website}/?utm_source=discord)`)
           .setColor(0x009999)
           .setFooter(`CountdownToXMAS - Made by ${config.creator}`, `${config.website}/assets/img/logo.png`)
         message.channel.send({
