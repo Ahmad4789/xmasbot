@@ -166,7 +166,7 @@ client.on('ready', () => {
           embed
         });
       } catch (e) {
-        return;
+        console.log(`[Discord] Error sending daily countdown log`)
       }
       console.log(`There are ${daysleft()} ${dmsg} left to Christmas!`);
       console.log(`  > Sending daily countdown to ${data.length} channels...`);
@@ -181,8 +181,8 @@ client.on('ready', () => {
 
 client.on("guildCreate", guild => {
   if (!guild.owner.dmChannel) return;
-  if (client.guilds.size == 500) {
-    guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 500th SERVER!\n`);
+  if (client.guilds.size == 750) {
+    guild.owner.send(`:tada: THANK YOU! \`${guild.name}\` IS THE 750th SERVER!\n`);
   }
   // OLD // guild.owner.send(`**»** Hello, ${guild.owner}. Please type \`${config.prefix}channel\` to set the daily countdown channel. When you no longer want the daily countdown, just use the \`${config.prefix}reset\` command.\nIf you like the bot, please upvote it here: https://discordbots.org/bot/509851616216875019`)
 
